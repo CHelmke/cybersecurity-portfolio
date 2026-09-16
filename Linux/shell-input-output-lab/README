@@ -1,0 +1,397 @@
+# Linux Shell Input and Output Lab
+
+## Project Overview
+
+This project documents hands-on practice using the Bash shell in an authorized Linux Qwiklabs training environment as part of my cybersecurity studies.
+
+The exercise focused on understanding how commands provide input to the shell and how Linux returns either successful output or error messages.
+
+I practiced generating text output with `echo`, performing integer calculations with `expr`, clearing terminal output with `clear`, and experimenting with Bash syntax beyond the required lab instructions.
+
+During my additional practice, I intentionally attempted a grouped mathematical expression and encountered a Bash syntax error. Investigating the error helped reinforce the distinction between how Bash interprets command syntax and how an individual command processes its arguments.
+
+---
+
+## Skills Demonstrated
+
+- Linux command-line fundamentals
+- Bash shell usage
+- Command input and output
+- Reading terminal output
+- Error-message interpretation
+- Basic shell syntax
+- Integer calculations with `expr`
+- String output with `echo`
+- Troubleshooting command syntax
+- Independent command-line experimentation
+
+---
+
+## Technologies and Tools
+
+| Technology | Purpose |
+|---|---|
+| Linux | Operating system used in the training environment |
+| Bash | Shell used to execute commands |
+| echo | Command used to generate text output |
+| expr | Command used to evaluate basic integer expressions |
+| clear | Command used to clear terminal output |
+| Qwiklabs | Authorized virtual training environment |
+
+---
+
+## Environment
+
+The exercise was completed in a temporary authorized Linux training environment using the Bash shell.
+
+The training account was:
+
+```text
+analyst
+```
+
+All commands were executed against the provided lab environment rather than a production or third-party system.
+
+---
+
+## Task 1: Generate Output with `echo`
+
+I began by entering:
+
+```bash
+echo hello
+```
+
+The shell returned:
+
+```text
+hello
+```
+
+In this interaction:
+
+- `echo hello` was the input.
+- `hello` was the output returned by the shell.
+
+I then repeated the command using quotation marks:
+
+```bash
+echo "hello"
+```
+
+The output remained:
+
+```text
+hello
+```
+
+This demonstrated that quotation marks were optional for this simple string, although quotes can be important when text contains spaces or characters that Bash could otherwise interpret specially.
+
+I also generated my own text output:
+
+```bash
+echo Corinna
+```
+
+which returned:
+
+```text
+Corinna
+```
+
+### Result
+
+I successfully used `echo` to provide string input and receive corresponding shell output.
+
+---
+
+## Task 2: Perform Calculations with `expr`
+
+I used the `expr` command to perform integer arithmetic.
+
+### Subtraction
+
+The scenario contained 32 security alerts, of which 8 required action.
+
+I calculated the remaining alerts with:
+
+```bash
+expr 32 - 8
+```
+
+The shell returned:
+
+```text
+24
+```
+
+This reinforced that `expr` requires spaces between operands and operators.
+
+### Multiplication
+
+I then calculated the expected annual number of login attempts based on 3,500 attempts per month:
+
+```bash
+expr 3500 \* 12
+```
+
+The result was:
+
+```text
+42000
+```
+
+### Result
+
+I successfully used `expr` to perform integer calculations directly from the Bash command line.
+
+---
+
+## Task 3: Clear the Terminal
+
+I used:
+
+```bash
+clear
+```
+
+to remove previous terminal output from the visible Bash window.
+
+This does not delete command history or files. It clears the visible terminal display so that the current work is easier to read.
+
+---
+
+## Additional Practice
+
+After completing the required exercises, I experimented further with the commands.
+
+### Additional `echo` Test
+
+I entered:
+
+```bash
+echo Hello World!
+```
+
+and received:
+
+```text
+Hello World!
+```
+
+This provided additional practice passing a multi-word string through the shell.
+
+---
+
+## Troubleshooting a Bash Expression
+
+I attempted to evaluate a grouped mathematical expression using:
+
+```bash
+expr (8+9)*2
+```
+
+Instead of returning a mathematical result, Bash responded with an error similar to:
+
+```text
+-bash: syntax error near unexpected token `8+9'
+```
+
+### Why the Error Occurred
+
+This error demonstrated an important shell concept.
+
+Bash interprets certain characters before a command such as `expr` receives them.
+
+In the attempted expression:
+
+```text
+(8+9)*2
+```
+
+several syntax issues were present:
+
+1. The parentheses have special meaning to Bash.
+2. `expr` expects spaces between numbers and mathematical operators.
+3. The `*` character can also have special meaning to the shell as a wildcard.
+
+A Bash-compatible `expr` version would therefore escape the special characters and separate the terms:
+
+```bash
+expr \( 8 + 9 \) \* 2
+```
+
+This expression evaluates:
+
+```text
+(8 + 9) × 2
+```
+
+which produces:
+
+```text
+34
+```
+
+### What I Learned from the Error
+
+The error helped me understand that command-line troubleshooting involves more than knowing what a command does.
+
+There are two layers involved:
+
+1. **Bash parses the command line.**
+2. **The selected command then processes the arguments Bash passes to it.**
+
+If Bash rejects the syntax first, the intended command may never receive the expression.
+
+This distinction becomes increasingly important when working with shell scripts, regular expressions, wildcards, file paths, variables, and security tools.
+
+---
+
+## Commands Practiced
+
+```bash
+echo hello
+```
+
+Outputs a simple string.
+
+```bash
+echo "hello"
+```
+
+Outputs a quoted string.
+
+```bash
+echo Corinna
+```
+
+Outputs custom text.
+
+```bash
+expr 32 - 8
+```
+
+Performs integer subtraction.
+
+```bash
+expr 3500 \* 12
+```
+
+Performs integer multiplication.
+
+```bash
+clear
+```
+
+Clears the visible terminal window.
+
+```bash
+expr \( 8 + 9 \) \* 2
+```
+
+Demonstrates grouped arithmetic while escaping Bash special characters.
+
+---
+
+## Cybersecurity Relevance
+
+Security analysts frequently interact with Linux systems through a command-line shell.
+
+Understanding input, output, and errors is foundational because security tools often return their results through terminal output rather than graphical interfaces.
+
+A security analyst needs to be able to distinguish among:
+
+- Successful command output
+- Informational output
+- Warnings
+- Syntax errors
+- Application errors
+- Permission errors
+- System or environment failures
+
+This exercise also reinforced the importance of reading error messages rather than immediately assuming that a tool or system is broken.
+
+The syntax error encountered during my additional `expr` experiment was generated by Bash because of how the command line was written. This differs from the package-availability problem I encountered in my separate Linux software-management project, where the command syntax was valid but the training environment could not provide the requested package.
+
+Recognizing this difference is an important troubleshooting skill.
+
+---
+
+## Evidence Collected
+
+The following screenshots were captured from the authorized Linux training environment.
+
+### 1. Generating Text Output with `echo`
+
+The `echo` command returned text supplied as input, including quoted and unquoted strings.
+
+![Echo command practice](evidence/01-echo-output.png)
+
+### 2. Performing Calculations with `expr`
+
+The `expr` command successfully performed subtraction and multiplication.
+
+![Expr calculation practice](evidence/02-expr-calculations.png)
+
+### 3. Clearing the Bash Terminal
+
+The `clear` command was used to reset the visible terminal workspace.
+
+![Clear command](evidence/03-clear-command.png)
+
+### 4. Additional Echo Practice
+
+I generated additional multi-word output while experimenting with the shell.
+
+![Additional echo practice](evidence/04-additional-echo.png)
+
+### 5. Bash Syntax Error During Additional Practice
+
+An attempted grouped expression produced a Bash syntax error, providing an opportunity to investigate shell parsing and special characters.
+
+![Bash expression syntax error](evidence/05-expr-syntax-error.png)
+
+> All evidence comes from an authorized temporary training environment. No customer information, passwords, credentials, API keys, proprietary logs, or confidential business information are included.
+
+---
+
+## What I Learned
+
+This lab reinforced several foundational Linux concepts:
+
+- Commands entered at the prompt are input to the shell.
+- Commands can return successful output or error messages.
+- `echo` can generate string output.
+- Quotation marks can control how text is interpreted by the shell.
+- `expr` can perform integer arithmetic.
+- Spaces matter when constructing `expr` expressions.
+- Bash interprets certain special characters before passing arguments to another command.
+- Parentheses and wildcard characters may need to be escaped.
+- Error messages can provide useful clues about which layer of a command failed.
+- Experimenting beyond prescribed lab instructions helps reveal how the shell actually behaves.
+
+The most valuable part of the exercise was seeing that a failed command can still provide useful information. The syntax error in my additional calculation helped me understand how Bash parses commands before another utility processes them.
+
+---
+
+## Lab Outcome
+
+| Objective | Result |
+|---|---|
+| Generate output with `echo` | ✅ Completed |
+| Compare quoted and unquoted strings | ✅ Completed |
+| Generate custom text output | ✅ Completed |
+| Perform subtraction with `expr` | ✅ Completed |
+| Perform multiplication with `expr` | ✅ Completed |
+| Clear terminal output | ✅ Completed |
+| Perform additional shell experimentation | ✅ Completed |
+| Encounter and analyze a Bash syntax error | ✅ Completed |
+
+---
+
+## Project Status
+
+**Completed.**
+
+The required input/output exercises were completed successfully, and additional experimentation provided hands-on practice interpreting and troubleshooting Bash syntax errors.
