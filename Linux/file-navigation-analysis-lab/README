@@ -1,0 +1,466 @@
+# Linux File Navigation and Analysis Lab
+
+## Project Overview
+
+This project documents hands-on Linux file-system navigation and file-analysis practice completed in an authorized Qwiklabs training environment as part of my cybersecurity studies.
+
+The objective was to navigate a Linux directory structure entirely from the Bash shell, locate specific reports and log files, read their contents, and extract information from those files.
+
+Unlike earlier command demonstrations, this exercise required me to determine which Linux commands were appropriate for each task and interpret the returned data.
+
+---
+
+## Skills Demonstrated
+
+- Linux command-line navigation
+- Bash shell usage
+- File-system navigation
+- Identifying the current working directory
+- Listing directory contents
+- Navigating absolute paths
+- Reading text files from the command line
+- Inspecting log files
+- Interpreting user-access reports
+- Extracting information from structured text
+- Basic security log analysis
+
+---
+
+## Technologies and Tools
+
+| Technology | Purpose |
+|---|---|
+| Linux | Operating system used in the training environment |
+| Bash | Command-line shell |
+| `pwd` | Displays the current working directory |
+| `ls` | Lists files and directories |
+| `cd` | Changes the current working directory |
+| `cat` | Displays the contents of a text file |
+| `head` | Displays the beginning of a text file |
+| Qwiklabs | Authorized virtual training environment |
+
+---
+
+## Environment
+
+The activity was completed in a temporary Linux training environment using the provided account:
+
+```text
+analyst
+```
+
+The starting location was the analyst user's home directory.
+
+All activity was performed in an authorized training environment and did not involve production systems or third-party infrastructure.
+
+---
+
+## Task 1: Identify the Current Working Directory
+
+I used:
+
+```bash
+pwd
+```
+
+The shell returned:
+
+```text
+/home/analyst
+```
+
+This confirmed my current position in the Linux file system.
+
+I then used:
+
+```bash
+ls
+```
+
+to display the contents of the directory.
+
+The output showed:
+
+```text
+logs
+projects
+reports
+temp
+```
+
+### Observation
+
+The `/home/analyst` directory contained four directories.
+
+This reinforced the difference between:
+
+- knowing where I currently am in the file system with `pwd`
+- seeing what is available at that location with `ls`
+
+---
+
+## Task 2: Navigate to the Reports Directory
+
+I navigated to the reports directory using an absolute path:
+
+```bash
+cd /home/analyst/reports
+```
+
+The command prompt changed to reflect the new location:
+
+```text
+~/reports$
+```
+
+I then inspected the contents of the reports structure and navigated into the user-report directory.
+
+The relevant subdirectory was:
+
+```text
+users
+```
+
+### Result
+
+I successfully navigated from the user home directory into the report structure using `cd`.
+
+---
+
+## Task 3: Locate and Read a User Report
+
+I navigated to:
+
+```bash
+cd /home/analyst/reports/users
+```
+
+I listed the available files with:
+
+```bash
+ls
+```
+
+The directory contained:
+
+```text
+Q1_added_users.txt
+Q1_deleted_users.txt
+```
+
+I then inspected the added-user report with:
+
+```bash
+cat Q1_added_users.txt
+```
+
+The file contained employee information organized into columns:
+
+```text
+employee_id    username    department
+```
+
+The displayed records included users from departments such as:
+
+- Marketing
+- Human Resources
+- Sales
+- Information Technology
+- Finance
+
+### Analysis
+
+I used the report contents to locate specific user-account information.
+
+For example, the report showed:
+
+```text
+1104    mreed    Information Technology
+```
+
+and:
+
+```text
+1177    aezra    Human Resources
+```
+
+This exercise demonstrated how Linux command-line tools can be used to inspect access or account information without a graphical interface.
+
+---
+
+## Task 4: Inspect Server Logs
+
+I navigated to the log directory using:
+
+```bash
+cd /home/analyst/logs
+```
+
+I listed its contents:
+
+```bash
+ls
+```
+
+The directory contained:
+
+```text
+server_logs.txt
+```
+
+Instead of displaying the entire log file, I inspected only the beginning using:
+
+```bash
+head server_logs.txt
+```
+
+By default, `head` displays the first 10 lines of a file.
+
+The output contained a mixture of log severity levels:
+
+```text
+info
+error
+warning
+```
+
+Examples included:
+
+```text
+User logged on successfully
+The password is incorrect
+The file storage is 75% full
+The username is incorrect
+The file storage is 90% full
+The current user's password expires in 15 days
+```
+
+### Observation
+
+Three warning messages appeared within the first 10 log entries.
+
+The warnings related to:
+
+- file storage reaching 75%
+- file storage reaching 90%
+- a user password expiring in 15 days
+
+---
+
+## Understanding the Commands
+
+### `pwd`
+
+```bash
+pwd
+```
+
+`pwd` means **print working directory**.
+
+It displays the full path of the directory I am currently working in.
+
+Example:
+
+```text
+/home/analyst
+```
+
+---
+
+### `ls`
+
+```bash
+ls
+```
+
+Lists the files and directories available in the current location.
+
+This is useful for discovering what resources are available before navigating deeper into a file structure.
+
+---
+
+### `cd`
+
+```bash
+cd /home/analyst/reports
+```
+
+`cd` means **change directory**.
+
+It changes the current working location in the file system.
+
+The exercise also reinforced the use of absolute paths beginning with:
+
+```text
+/
+```
+
+---
+
+### `cat`
+
+```bash
+cat Q1_added_users.txt
+```
+
+`cat` can display the complete contents of a text file directly in the terminal.
+
+This was useful for reviewing the relatively small user-access report.
+
+---
+
+### `head`
+
+```bash
+head server_logs.txt
+```
+
+`head` displays the beginning of a file.
+
+Without additional options, it displays the first 10 lines.
+
+This is useful when working with large logs because an analyst may want to inspect a sample before opening or processing the entire file.
+
+---
+
+## Cybersecurity Relevance
+
+Security analysts frequently work on Linux systems remotely or through command-line interfaces.
+
+Being able to navigate and inspect files without relying on a graphical interface is useful when analyzing:
+
+- authentication logs
+- server logs
+- access reports
+- account changes
+- configuration files
+- incident evidence
+- security-tool output
+
+This exercise also demonstrated two different types of analyst investigation.
+
+### User and Access Information
+
+The `Q1_added_users.txt` report contained employee account information.
+
+In an IAM or access-review scenario, similar files could be used to investigate:
+
+- newly created accounts
+- department assignments
+- employee identifiers
+- inappropriate or unexpected access changes
+
+### Server Logs
+
+The `server_logs.txt` file contained informational, warning, and error messages.
+
+Security analysts often review logs to identify patterns such as:
+
+- successful logins
+- failed authentication attempts
+- resource-capacity warnings
+- password issues
+- configuration or service errors
+
+---
+
+## What I Learned
+
+This activity reinforced that Linux commands can be combined as part of a simple investigation workflow.
+
+Rather than using each command in isolation, I followed a sequence:
+
+```text
+Determine current location
+        ↓
+Inspect available directories
+        ↓
+Navigate to relevant evidence
+        ↓
+Identify the correct file
+        ↓
+Read the file
+        ↓
+Interpret the information
+```
+
+I practiced:
+
+- determining my location with `pwd`
+- discovering available files and directories with `ls`
+- navigating through the file system with `cd`
+- inspecting complete text files with `cat`
+- sampling log files with `head`
+- reading structured account information
+- distinguishing informational, warning, and error log messages
+- extracting specific information from command-line output
+
+The most useful part of this lab was moving from simply knowing Linux commands to using them to answer questions from actual files.
+
+---
+
+## Evidence Collected
+
+The following screenshots were captured in the authorized Linux training environment.
+
+### 1. Current Working Directory
+
+`pwd` identified the current directory as `/home/analyst`.
+
+![Current working directory](evidence/01-pwd-current-directory.png)
+
+### 2. Listing Home Directory Contents
+
+`ls` displayed the directories available under `/home/analyst`.
+
+![Listing analyst home directory](evidence/02-ls-home-directory.png)
+
+### 3. Navigating to Reports
+
+I used `cd` to navigate to `/home/analyst/reports`.
+
+![Navigating to reports](evidence/03-cd-reports.png)
+
+### 4. Locating User Reports
+
+The `users` directory contained the quarterly added-user and deleted-user reports.
+
+![User report files](evidence/04-user-report-files.png)
+
+### 5. Reading the Added-Users Report
+
+I used `cat` to inspect `Q1_added_users.txt` and review employee account information.
+
+![Added users report](evidence/05-cat-added-users.png)
+
+### 6. Inspecting Server Logs
+
+I used `head` to inspect the first 10 lines of `server_logs.txt`.
+
+![Server log analysis](evidence/06-head-server-logs.png)
+
+> All evidence comes from an authorized temporary training environment. No real customer data, passwords, credentials, API keys, proprietary logs, or confidential business information are included.
+
+---
+
+## Lab Outcome
+
+| Objective | Result |
+|---|---|
+| Identify current working directory | ✅ Completed |
+| List files and directories | ✅ Completed |
+| Navigate using `cd` | ✅ Completed |
+| Locate report files | ✅ Completed |
+| Read a file with `cat` | ✅ Completed |
+| Navigate to server logs | ✅ Completed |
+| Inspect log entries with `head` | ✅ Completed |
+| Extract user information from a report | ✅ Completed |
+| Interpret log severity messages | ✅ Completed |
+
+---
+
+## Project Status
+
+**Completed.**
+
+The activity provided hands-on practice navigating a Linux file structure, locating relevant evidence, reading text reports and server logs, and extracting information entirely through the Bash command line.S
