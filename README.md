@@ -116,6 +116,21 @@ Navigated a Linux file structure using Bash, located user reports and server log
 
 [View Project](linux/file-navigation-analysis-lab/)
 
+## Linux Filtering with grep
+
+Used `grep` and Bash pipelines to filter server logs, locate files by naming patterns, search user-account records, and troubleshoot multi-word search syntax.
+
+**Skills demonstrated:**
+
+- Linux
+- Bash
+- grep
+- Pipes
+- Log filtering
+- User-account analysis
+- Command-line troubleshooting
+
+[View Project](linux/grep-filtering-lab/)
 ---
 
 # Skills Demonstrated Across Projects
