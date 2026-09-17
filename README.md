@@ -132,6 +132,24 @@ Used `grep` and Bash pipelines to filter server logs, locate files by naming pat
 
 [View Project](linux/grep-filtering-lab/)
 ---
+## Linux File and Directory Management
+
+Managed a Linux directory structure using Bash by creating and removing directories, moving and deleting files, creating new files, and editing documentation with Nano.
+
+**Skills demonstrated:**
+
+- Linux
+- Bash
+- `mkdir`
+- `rmdir`
+- `mv`
+- `rm`
+- `touch`
+- Nano
+- File-system organization
+- Command-line verification
+
+[View Project](linux/file-management-lab/)
 
 # Skills Demonstrated Across Projects
 
