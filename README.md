@@ -151,6 +151,25 @@ Managed a Linux directory structure using Bash by creating and removing director
 
 [View Project](linux/file-management-lab/)
 
+# SQL Projects
+
+## SQL Security Queries
+
+Used SQL in MariaDB to investigate simulated device inventory and authentication data. Queried selected columns, reviewed patch dates and login activity, and sorted authentication events chronologically using `ORDER BY`.
+
+**Skills demonstrated:**
+
+- SQL
+- MariaDB
+- `SELECT`
+- `FROM`
+- `ORDER BY`
+- Device inventory analysis
+- Authentication data analysis
+- Security-focused data interpretation
+
+[View Project](sql/basic-security-queries/)
+
 # Skills Demonstrated Across Projects
 
 ## Operating Systems and Command Line
